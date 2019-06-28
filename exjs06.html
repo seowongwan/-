@@ -6,14 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JS ARRAY EX</title>
     <style>
-        td, th{
-            border: 1px solid deepskyblue;
+        td, th {
+            border: 1px solid black;
         }
-        table{
+        table {
             border-spacing: 0px;
             border-collapse: collapse;
         }
-
     </style>
 </head>
 <body>
@@ -26,9 +25,10 @@
             상품번호:<input type="text" id="pno" /> 
             상품명:<input type="text" id="pname" />
             가격:<input type="text" id="price" />
-            <button id="save">저장</button></td></tfoot>
-        </tr>
-        </table>
+            <button id="save">저장</button>
+            </td>
+        </tr></tfoot>
+    </table>
     <script>
         // 상품객체들을 저장하는 배열 생성
         var prodList = [];
@@ -39,18 +39,18 @@
 
         //1. 현재 prodList 에 저장되어 있는 상품들의 정보를 상품목록 테이블의 tbody에 출력
         var tbody = document.querySelector('#prods');
-        function printPordList(){
+        
+        function printProdList() {
             var html = '';
-            
-        for (var i=0; i < prodList.length; i++) {
-            
-            var p = prodList[i];
-            html +=  '<tr>' + '<td>' + p.no + '</td>' + '<td>'+ p.name + '</td>' + '<td>' + p.price + '</td>' + '</tr>';   
+            for (var i = 0; i < prodList.length; i++) {
+                var p = prodList[i];
+                html += '<tr>' + '<td>' + p.no +'</td>' + '<td>' + p.name +'</td>' + '<td>' + p.price +'</td>' +'</tr>';    
+            }
+            tbody.innerHTML = html;
         }
-        tbody.innerHTML = html;
-        }
+        
+        printProdList();
 
-        printPordList();
         //2. 저장 버튼을 클릭하면, 입력한 상품 정보를 prodList 에 추가하고,
         //  prodList 에 저장되어 있는 상품들의 정보를 상품목록 테이블의 tbody에 다시 출력
         //  input 엘리먼트에 입력되어 있는 값들은 초기화
@@ -58,17 +58,15 @@
         var nameIn = document.querySelector('#pname');
         var priceIn = document.querySelector('#price');
         var saveBtn = document.querySelector('#save');
-
-        save.onclick=function(){
-            // var noVal = Number(noIn.value); 
-            // var priceVal = Number(priceIn.value); //밑에와 동일한 명령어
-            prodList.push( { no: Number(noIn.value), name: nameIn.value, price: Number(priceIn.value) } );
-            printPordList();
+        saveBtn.onclick = function () {
+            var noVal = Number( noIn.value );
+            var priceVal = Number( priceIn.value );
+            prodList.push( { no: noVal  , name: nameIn.value, price: priceVal } );
+            printProdList();
             noIn.value = '';
             nameIn.value = '';
             priceIn.value = '';
         };
-
 
     </script>
 </body>

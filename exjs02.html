@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JS BRANCH and LOOP</title>
+    <style>
+        td {
+            border: 1px solid black;
+        }
+        table {
+            border-spacing: 0px;
+            border-collapse: collapse;
+        }
+    </style>
 </head>
 <body>
     <h1>1</h1>
@@ -52,6 +61,10 @@
         </select> 단까지 <button id="outBtn">구구단 출력</button>
         <div id="out"></div>
     </div>
+    <h1>6</h1>
+    <ul id="todos">
+    </ul>
+    <input type="text" id="do" /> <button id="saveBtn">추가</button>
     <script>
         // 1.점수를 입력받고 평가 버튼을 클릭하면, 60-100 이면 통과, 0~59면 실패, 나머지는 유효하지 않은 점수라고 출력
         var scoreInp = document.querySelector('#score');
@@ -127,9 +140,18 @@
 
         addBtn.onclick = function () {
             //입력값이 없는 경우
+            if (numIn.value.length === 0) { //(numIn.value === '')
+                alert('값을 입력하세요');
+                return;
+            }
             var n = Number(numIn.value);
             //숫자가 아닌 값을 입력한 경우 (n 변수 값이 NaN인 경우)
             //NaN은 비교연산자로 비교할 수 없고, isNaN( ) 함수로 확인 가능
+            if ( isNaN(n) == true ) { //숫자가 아닌 경우
+                alert('님 숫자 모름?');
+                numIn.value = '';
+                return;
+            } 
             var total = Number(totalIn.value);
             total = total + n; // total += n;
             totalIn.value = total;
@@ -139,14 +161,41 @@
             totalIn.value = 0;
         }
 
-
-
         // 5.구구단을 테이블 형태로 출력
         //  select 에서 단 수를 선택하고, 구구단 출력 버튼을 클릭하면, 선택한 단까지 구구단을 테이블로 생성하여 id가 out인 div 안에 출력
         //  구구단 테이블 모양은 아래 이미지를 참고하여 2가지 형태로 출력
         // https://i2.wp.com/www.happyfam.or.kr/ysoh/wp-content/uploads/sites/3/1/cfile10.uf.133865234C84222C43F18D.gif?resize=500%2C342
         // https://4.bp.blogspot.com/-sMnQzltEQNY/WCqNbKngF2I/AAAAAAAACd8/JuOc1vTm2C8NRnFfmNR3TxqSzXXucXlEACLcB/s1600/K-004.png
+        var danSel = document.querySelector('#dan');
+        var outBtn = document.querySelector('#outBtn');
+        var outDiv = document.querySelector('#out');
 
+        outBtn.onclick = function() {
+            var dan = Number( danSel.value );
+            var html = '';
+            html = html + '<table>' + '<tbody>';
+            for (var x = 2; x <= dan; x++) {
+                html = html + '<tr>'; 
+                for (var y = 1; y <= 9; y++) {
+                    html = html + '<td>' + x +'*'+ y +'='+ (x*y) + '</td>';
+                }
+                html = html + '</tr>'; 
+            }
+            html = html + '</tbody>' + '</table>';
+            outDiv.innerHTML = html;
+        };
+
+        // 6.
+        var todoList = document.querySelector('#todos');
+        var todoIn = document.querySelector('#do');
+        var saveBtn = document.querySelector('#saveBtn');
+
+        saveBtn.onclick = function() {
+            var todo = todoIn.value;
+            todoList.innerHTML = todoList.innerHTML + '<li>' + todo + '</li>';
+            // todoList.innerHTML += '<li>' + todo + '</li>';
+            todoIn.value = '';
+        };
     </script>
 </body>
 </html>

@@ -26,13 +26,15 @@
         var imgBtn = document.querySelector('#addImgBtn');
         var imgDiv = document.querySelector('#imgDiv');
         imgBtn.onclick = function(){
-            //엘리먼트를 추가하는 방법1                
+            //엘리먼트를 추가하는 방법1
+            // imgDiv.innerHTML += '<img src="./img/car1.png" />';
 
-            //엘리먼트를 추가하는 방법2                
-            //<img />
-            //<img src="./img/car1.png" />
-            //<img src="./img/car1.png" alt="차" />
+            //엘리먼트를 추가하는 방법2
+            var newImg = document.createElement('img'); //<img>
+            // newImg.src = './img/car1.png'; //<img src="./img/car1.png" />
+            newImg.setAttribute( 'src','./img/car1.png'); //<img src="./img/car1.png" />
             //imgDiv 엘리먼트의 자식 엘리먼트로 새로 만든 img 엘리먼트를 추가
+            imgDiv.appendChild( newImg );
         };
 
         //텍스트 추가버튼을 클릭하면 h1 엘리먼트를 txtDiv에 추가
@@ -40,11 +42,13 @@
         var txtBtn = document.querySelector('#addTxtBtn');
         txtBtn.onclick = function(){
             //엘리먼트를 추가하는 방법1
+            // txtDiv.innerHTML += '<h1>제목</h1>';
 
             //엘리먼트를 추가하는 방법2                
-            //<h1></h1>
-            //<h1>제목2</h1>
-            txtdiv.appendChild(txt);
+            var newH = document.createElement('h1'); //<h1></h1>
+            // newH.innerHTML = '제목'; //<h1>제목</h1>
+            newH.appendChild( document.createTextNode('제목') ); //<h1>제목</h1>
+            txtDiv.appendChild( newH );
         };
 
         // textContent 속성에 태그가 포함된 문자열을 저장하면, 태그는 모두 특수문자로 변환되어 저장
@@ -60,9 +64,17 @@
         var delBtn = document.querySelector('#delImgBtn');
         delBtn.onclick =function(){
             //imgDiv 를 삭제
+            // imgDiv.remove(); //IE 미지원
+            // imgDiv.parentElement.removeChild( imgDiv );
 
             //imgDiv 내부의 img 엘리먼트들을 삭제
-
+            // var imgList = document.querySelectorAll('#imgDiv img');
+            var imgList = imgDiv.querySelectorAll('img');
+            for (var i = 0; i < imgList.length; i++) {
+                var img = imgList[i];
+                img.parentElement.removeChild( img );
+                // imgDiv.removeChild( img );
+            }
         };
     </script>
 </body>

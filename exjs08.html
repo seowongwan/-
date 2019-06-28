@@ -31,59 +31,50 @@
         //attribute와 property는 대부분 이름과 값이 동일하지만, 조금씩 다른 경우도 존재한다.
         
         //속성 값이 동일한 경우와 약간 다른 경우
-        // <img src="./img/car1.png" alt="자동차" id="ballImg" data-price="10000" />
+        //<img src="./img/car1.png" alt="자동차" id="ballImg" data-price="10000" />
+        //{ nodeName: 'IMG', src:"http://127.0.0.1:5500/img/car1.png", id:"ballImg", alt:"자동차" ... }
         var bimg = document.querySelector('#ballImg');
-        console.log(bimg.id);   //property 사용
-        console.log( bimg.getAttribute('id'));  //attribute
-        console.log(bimg.src);   //property 사용
-        console.log( bimg.getAttribute('src'));  //attribute
+        console.log( bimg.id ); //property
+        console.log( bimg.getAttribute('id') ); //attribute
+        console.log( bimg.src ); //property
+        console.log( bimg.getAttribute('src') ); //attribute
 
         //커스텀 속성 : 원래 HTML 문법에는 존재하지 않는데, 임의로 만들어 넣은 속성 (속성 이름은 data-로 시작하도록 짓는 것을 권장)
-        //커스텀 속성은 getAttribute(), setAttribute()로 읽고 쓰기
-        console.log(bimg['data-price']);   //property 사용
-        console.log( bimg.getAttribute('data-price'));  //attribute
-
-
-
-
+        //커스텀 속성은 getAttribute(), setAttribute() 로 읽고 쓰기
+        console.log( bimg['data-price'] ); //property
+        console.log( bimg.getAttribute('data-price') ); //attribute
         
         //피자에서 best 클래스를 제거하고, 스파게티에 best 클래스를 추가
         //엘리먼트의 클래스 조작은 classList 속성을 사용
         var pizza = document.querySelector('#item1');
         var pasta = document.querySelector('#item2');
-        console.log(pizza.classList);
+        console.log( pizza.classList );
         pizza.classList.remove('best');
-
         pasta.classList.add('best');
-
-
         
         //현재 딸기와 수박이 선택되어 있는지 확인하고, 수박은 체크, 딸기는 체크해제
         var cb1 = document.querySelector('#cbox1');
         var cb2 = document.querySelector('#cbox2');
-        console.log('딸기 : ', cb1.checked);
-        console.log('딸기 : ', cb1.getAttribute('checked'));
-
-        console.log('수박 : ', cb2.checked);
-        console.log('수박 : ', cb2.getAttribute('checked'));
-        
+        console.log('딸기 : ', cb1.checked );
+        console.log('딸기 : ', cb1.getAttribute('checked') );
+        console.log('수박 : ', cb2.checked );
+        console.log('수박 : ', cb2.getAttribute('checked') );
         // cb2.checked = true;
-        cb2.setAttribute('checked', 'checked');
-
-        // cb1.setAttribute('checked', null);
+        cb2.setAttribute( 'checked', 'checked' );
+        // cb1.checked = false;
+        // cb1.setAttribute( 'checked', null );
         cb1.removeAttribute('checked');
 
         //id가 box인 div의 너비를 300px, 높이를 100px, 배경색을 'green'으로 변경
         //CSS 스타일은 "엘리먼트.style.스타일속성명"을 사용 (스타일 속성명은 -를 제거하고 낙타표기법 사용)
-        // <div id="box" style="width:200px;height:200px;background-color:brown;" >빈상자</div>
         var boxDiv = document.querySelector('#box');
-
-        console.log(boxDiv.style);
-        // console.log(boxDiv.getAttribute('style'));
-        console.log(boxDiv.style.width);
+        console.log( boxDiv.style );
+        console.log( boxDiv.getAttribute('style') );
+        console.log( boxDiv.style.width );
         boxDiv.style.width = '300px';
         boxDiv.style.height = '100px';
-        boxDiv.style.backgroundColor = "green";
+        boxDiv.style.backgroundColor = 'green';  
+        
     </script>
 </body>
 </html>
